@@ -1,13 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateFlashcards } from '@/lib/openai';
 
-// Use Node.js runtime for pdf-parse
+// Use Node.js runtime for PDF processing
 export const runtime = 'nodejs';
-export const maxDuration = 60;
+export const maxDuration = 60; // Note: Hobby plans are capped at 10s
+
+// Polyfill DOMMatrix for PDF libraries that might check for it in serverless envs
+if (typeof global.DOMMatrix === 'undefined') {
+  (global as any).DOMMatrix = class DOMMatrix {
+    constructor() {}
+  };
+}
 
 export async function POST(req: NextRequest) {
+  console.log('--- API: Generate Flashcards Started ---');
   try {
     if (!process.env.OPENAI_API_KEY) {
+      console.error('Error: OPENAI_API_KEY is missing');
       return NextResponse.json(
         { error: 'OpenAI API key not configured. Add OPENAI_API_KEY to your .env.local file.' },
         { status: 500 }

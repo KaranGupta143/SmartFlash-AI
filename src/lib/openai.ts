@@ -102,7 +102,7 @@ export async function generateFlashcards(
 ): Promise<GenerationResult> {
   const client = getClient();
   const chunks = chunkText(extractedText);
-  const MAX_CHUNKS = 4; // Limit API calls to control cost
+  const MAX_CHUNKS = 2; // Reduced for Vercel Hobby stability (10s timeout)
   const chunksToProcess = chunks.slice(0, MAX_CHUNKS);
 
   let allCards: Flashcard[] = [];
@@ -117,7 +117,7 @@ export async function generateFlashcards(
         { role: 'user', content: buildUserPrompt(chunksToProcess[i], i, chunksToProcess.length) },
       ],
       temperature: 0.7,
-      max_tokens: 4000,
+      max_tokens: 1500, // Reduced for faster response time
       response_format: { type: 'json_object' },
     });
 
