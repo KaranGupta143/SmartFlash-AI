@@ -8,7 +8,7 @@
 ---
 
 [![Vercel Deployment](https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com)
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o-00A67E?style=for-the-badge&logo=openai)](https://openai.com/)
 
@@ -17,19 +17,25 @@
 ---
 
 ## 📖 Overview
-**SmartFlash AI** is a professional-grade EdTech platform that leverages Artificial Intelligence to transform static study materials into dynamic learning experiences. By combining **GPT-4o**'s advanced comprehension with the scientifically-proven **SM-2 Spaced Repetition Algorithm**, SmartFlash helps students and professionals master complex subjects with minimal effort and maximum retention.
+Most students spend hours re-reading notes — yet forget most of what they study. The problem isn’t effort. It’s the method.
 
-> "Don't just read. Retain."
+**SmartFlash AI** transforms static PDFs into intelligent, adaptive flashcards designed for **long-term retention**, not short-term cramming. Instead of passively consuming content, users actively learn through:
+
+* **Concept-driven flashcards** (not shallow Q&A)
+* **Adaptive spaced repetition** (SM-2)
+* **Continuous feedback** on weak vs strong areas
+
+**The Goal:** Turn studying into a system that actually works.
 
 ---
 
 ## ✨ Key Features
 
 - **🧠 Intelligent PDF Ingestion**
-  Upload any PDF (textbooks, lecture notes, research papers). Our engine extracts core concepts, definitions, and application-based questions with surgical precision.
+  Upload any PDF (textbooks, lecture notes, research papers). Our engine extracts **concepts, definitions, examples, and relationships** — not just surface-level summaries.
 
 - **🔁 Spaced Repetition (SM-2)**
-  Uses the industry-standard SM-2 algorithm (popularized by Anki) to calculate the optimal time for you to review each card based on your past performance.
+  Uses the industry-standard SM-2 algorithm to intelligently schedule reviews based on your performance. Focus on what you *don't* know.
 
 - **🎨 Premium Study Experience**
   A sleek, dark-themed interface featuring glassmorphic design, smooth 3D flip card animations, and responsive layouts for desktop and mobile.
@@ -42,12 +48,21 @@
 
 ---
 
+## 🎯 What Makes It Different
+
+* **Not a basic PDF converter:** Most tools just summarize; we build a curriculum.
+* **Deep Understanding:** Focuses on comprehension, not just shallow recall.
+* **Edge Case Coverage:** Generates cards for examples and complex relationships.
+* **Science-Backed:** Built entirely on learning science principles (Active Recall + Spaced Repetition).
+
+---
+
 ## 🛠 Tech Stack
 
 - **Framework:** [Next.js 16](https://nextjs.org/) (App Router & Turbopack)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **AI Engine:** [OpenAI GPT-4o](https://platform.openai.com/)
-- **PDF Processing:** [pdf2json](https://www.npmjs.com/package/pdf2json) (Pure Node implementation)
+- **PDF Processing:** [pdf2json](https://www.npmjs.com/package/pdf2json)
 - **Styling:** CSS Modules with Vanilla CSS Variables
 - **Storage:** Web Storage API (localStorage)
 - **Animations:** CSS Keyframes & 3D Transforms
@@ -75,10 +90,6 @@
 
 3. **Configure environment variables**
    Create a `.env.local` file in the root directory:
-   ```bash
-   touch .env.local
-   ```
-   Add your API key:
    ```env
    OPENAI_API_KEY=sk-proj-your-actual-key-here
    ```
@@ -99,48 +110,35 @@ SmartFlash AI implements a refined version of the **SuperMemo-2 (SM-2)** algorit
 - **Repetitions (R):** Successful consecutive reviews.
 
 ### Grading Logic:
-- **Easy (`Quality 5`):** Massive interval boost. Card won't appear for 7+ days.
-- **Medium (`Quality 3`):** Moderate interval growth.
-- **Hard (`Quality 1`):** Interval reset to 1 day. card will reappear in your next session.
+- **Easy:** Massive interval boost. Card won't appear for 7+ days.
+- **Medium:** Moderate interval growth.
+- **Hard:** Interval reset to 1 day. Card will reappear imminently.
 
 ---
 
-## 📂 Project Structure
+## ⚠️ Challenges & Learnings
 
-```text
-smartflash-ai/
-├── src/
-│   ├── app/
-│   │   ├── api/generate/   # PDF to JSON flashcard conversion
-│   │   ├── dashboard/      # User analytics & progress
-│   │   ├── decks/          # Deck management & practice screen
-│   │   └── page.tsx        # High-conversion landing page
-│   ├── components/         # Reusable UI components (Navbar, Cards, etc.)
-│   └── lib/
-│       ├── sm2.ts          # Core SR Algorithm
-│       ├── storage.ts      # Browser-based persistence
-│       └── openai.ts       # Prompt engineering & LLM integration
-├── public/                 # Static assets
-└── next.config.ts          # Turbopack & External Lib configuration
-```
+* **Card Quality:** Engineering expert prompts to ensure AI generates non-generic, high-utility cards.
+* **Deduplication:** Designing logic to avoid repeating similar content within large PDFs.
+* **UX/UI Flow:** Balancing complex spaced repetition logic with a clean, intuitive interface.
 
 ---
 
-## 🚢 Deployment
+## 🚀 Future Roadmap
 
-### Vercel (Recommended)
-1. Push your code to GitHub.
-2. Connect your repository to [Vercel](https://vercel.com).
-3. Add `OPENAI_API_KEY` to the **Environment Variables** in the project settings.
-4. Deploy.
+* [ ] **Advanced SM-2 Optimization:** Adaptive easing based on specific subject difficulty.
+* [ ] **Deeper Analytics:** Visual heatmaps of learning progress and peak memory retention.
+* [ ] **Collaborative Decks:** Share AI-generated decks with classmates or teams.
+* [ ] **Multi-Model Support:** Integration with Claude 3.5 and Gemini Pro.
 
 ---
 
-## 📄 License
-This project is licensed under the MIT License - see the `LICENSE` file for details.
+## 🎯 Conclusion
+
+SmartFlash AI transforms passive studying into an **adaptive, intelligent learning system**. It’s not just about creating flashcards — it’s about helping users **actually remember what they learn**.
 
 ---
 
 <div align="center">
-Built with ✦ by KaranGupta143
+Built with ✦ by Karan Gupta
 </div>
